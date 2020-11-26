@@ -53,9 +53,9 @@
             <div class="col-md-6">
                 <div class="submit-area">
                     <h4>Withdraw</h4>
-                    <input type="text" class="form-control" placeholder="$ amount you want to withdraw">
+                    <input id="withdrawAmount" type="text" class="form-control" placeholder="$ amount you want to withdraw">
                     <br>
-                    <button class="btn btn-success">Withdraw</button>
+                    <button class="btn btn-success" id="addWithdraw">Withdraw</button>
                 </div>
             </div>
         </div>
@@ -73,8 +73,9 @@
         // Deposit button event handlar 
         const depositBtn = document.getElementById('addDeposit');
         depositBtn.addEventListener('click', function(){
-            const depositAmount = document.getElementById('depositAmount').value;// input ar value neyer jonno .value use kortey hoi
-            const depositNumber = parseFloat(depositAmount);
+            const depositNumber = getInputNumber('depositAmount');
+            // const depositAmount = document.getElementById('depositAmount').value;// input ar value neyer jonno .value use kortey hoi
+            // const depositNumber = parseFloat(depositAmount);
 
             // const currentDeposit = document.getElementById('currentDeposit').innerText;
             // const currentDepositNumber = parseFloat(currentDeposit);
@@ -88,6 +89,20 @@
             document.getElementById('depositAmount').value = '';
 
         })
+
+        // withdraw button event handlar 
+
+        const withdrawBtn = document.getElementById('addWithdraw');
+        withdrawBtn.addEventListener('click', function() {
+            const withdrawNumber= getInputNumber('withdrawAmount');
+            console.log(withdrawNumber);
+        })
+
+        function getInputNumber(id) {
+            const Amount = document.getElementById(id).value;
+            const AmountNumber = parseFloat(Amount);
+            return AmountNumber;
+        }
 
         function updateSpanText(id, depositNumber) {
             const current = document.getElementById(id).innerText;
